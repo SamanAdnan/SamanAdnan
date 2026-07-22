@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saman Adnan — IT Systems &  ERP Specialist</title>
+
+<!-- Tailwind + DaisyUI via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --accent: #2DD4A7;
+    --accent-2: #22B892;
+    --amber: #F5B942;
+  }
+
+  [data-theme="dark"] {
+    --bg-0: #080B12;
+    --bg-1: #0D121C;
+    --bg-2: #121826;
+    --glass-fill: rgba(255,255,255,0.045);
+    --glass-fill-strong: rgba(255,255,255,0.08);
+    --glass-border: rgba(255,255,255,0.11);
+    --glass-border-hi: rgba(255,255,255,0.28);
+    --text-0: #EEF2F8;
+    --text-1: #A9B3C4;
+    --text-2: #6C7688;
+    --shadow-soft: 0 8px 40px rgba(0,0,0,0.45);
+  }
+
+  [data-theme="light"] {
+    --bg-0: #EEF1F6;
+    --bg-1: #E6EAF2;
+    --bg-2: #DEE3EE;
+    --glass-fill: rgba(255,255,255,0.55);
+    --glass-fill-strong: rgba(255,255,255,0.75);
+    --glass-border: rgba(255,255,255,0.7);
+    --glass-border-hi: rgba(255,255,255,0.95);
+    --text-0: #131722;
+    --text-1: #4A5468;
+    --text-2: #7C879C;
+    --shadow-soft: 0 8px 36px rgba(30,40,70,0.12);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  #home, #experience, #skills, #education, #contact {
+    scroll-margin-top: 96px;
+  }
+
+  body {
+    background: var(--bg-0);
+    color: var(--text-0);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ---------- Liquid ambient blobs ---------- */
+  .blob-field { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+    will-change: transform;
+  }
+  [data-theme="light"] .blob { opacity: 0.35; }
+
+  .blob-a { width: 46vw; height: 46vw; top: -10%; left: -10%; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 70%); animation: drift1 26s ease-in-out infinite; }
+  .blob-b { width: 38vw; height: 38vw; top: 30%; right: -12%; background: radial-gradient(circle at 60% 40%, var(--amber), transparent 70%); animation: drift2 32s ease-in-out infinite; }
+  .blob-c { width: 40vw; height: 40vw; bottom: -14%; left: 20%; background: radial-gradient(circle at 50% 50%, var(--accent-2), transparent 70%); animation: drift3 30s ease-in-out infinite; }
+
+  @keyframes drift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(6vw, 8vh) scale(1.12); } }
+  @keyframes drift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-7vw, 6vh) scale(0.9); } }
+  @keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(4vw, -6vh) scale(1.08); } }
+
+  /* ---------- Glass panels ---------- */
+  .glass {
+    background: var(--glass-fill);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft), inset 0 1px 0 var(--glass-border-hi), inset 0 0 0 1px rgba(255,255,255,0.02);
+    border-radius: 28px;
+    position: relative;
+  }
+    .glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--glass-border-hi), transparent 35%, transparent 65%, var(--glass-border-hi));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.5;
+      pointer-events: none;
+  }
+
+  .glass-strong { background: var(--glass-fill-strong); }
+
+  .glass-pill {
+    background: var(--glass-fill);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft), inset 0 1px 0 var(--glass-border-hi);
+    border-radius: 999px;
+  }
+
+  .glass-btn {
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .glass-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 40px rgba(45, 212, 167, 0.25), inset 0 1px 0 var(--glass-border-hi);
+  }
+  .glass-btn:active { transform: translateY(-1px) scale(0.98); }
+
+  /* ---------- Nav dock ---------- */
+  .nav-link { color: var(--text-1); transition: color 0.2s ease, background 0.2s ease; }
+  .nav-link.active, .nav-link:hover { color: var(--text-0); }
+  #dock-mobile .nav-link.active { background: var(--glass-fill-strong); }
+
+  /* ---------- Mobile spacing so the bottom dock never covers content ---------- */
+  @media (max-width: 639px) {
+    body { padding-bottom: 84px; }
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline-line {
+    background: linear-gradient(to bottom, var(--accent), transparent 96%);
+  }
+  .timeline-dot {
+    box-shadow: 0 0 0 4px var(--bg-0), 0 0 16px 2px rgba(45,212,167,0.6);
+  }
+
+  /* ---------- Skill meter ---------- */
+  .meter-track { background: var(--glass-fill); border: 1px solid var(--glass-border); }
+  .meter-fill { background: linear-gradient(90deg, var(--accent-2), var(--accent)); box-shadow: 0 0 12px rgba(45,212,167,0.5); }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.8s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  ::selection { background: rgba(45,212,167,0.35); }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+
+  .text-muted { color: var(--text-1); }
+  .text-faint { color: var(--text-2); }
+
+  .accent-text { color: var(--accent); }
+
+  .section-eyebrow {
+    letter-spacing: 0.2em;
+    font-size: 0.72rem;
+  }
+
+  .badge-glass {
+    background: var(--glass-fill);
+    border: 1px solid var(--glass-border);
+  }
+
+  .photo-frame {
+    background: conic-gradient(from 180deg, var(--accent), var(--amber), var(--accent-2), var(--accent));
+    padding: 3px;
+    border-radius: 32px;
+    animation: rotateHue 8s linear infinite;
+  }
+  @keyframes rotateHue { to { filter: hue-rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .photo-frame { animation: none; } }
+</style>
+</head>
+
+<body class="min-h-screen">
+
+<div class="blob-field">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+</div>
+
+<!-- ============ NAV — DESKTOP / TABLET PILL ============ -->
+<nav class="hidden sm:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 glass-pill px-2 py-2 items-center gap-1 nav-dock" id="dock">
+  <a href="#home" class="nav-link px-3 py-1.5 rounded-full text-sm font-medium">Home</a>
+  <a href="#experience" class="nav-link px-3 py-1.5 rounded-full text-sm font-medium">Work</a>
+  <a href="#skills" class="nav-link px-3 py-1.5 rounded-full text-sm font-medium">Skills</a>
+  <a href="#education" class="nav-link px-3 py-1.5 rounded-full text-sm font-medium">Education</a>
+  <a href="#contact" class="nav-link px-3 py-1.5 rounded-full text-sm font-medium">Contact</a>
+  <button aria-label="Toggle dark and light mode" class="theme-toggle ml-1 w-8 h-8 rounded-full flex items-center justify-center glass-btn" style="background:var(--glass-fill-strong)">
+    <svg class="icon-sun w-4 h-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+    <svg class="icon-moon w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+</nav>
+
+<!-- ============ NAV — MOBILE BOTTOM ICON DOCK ============ -->
+<nav class="sm:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 glass-pill px-2.5 py-2 flex items-center gap-1 nav-dock" id="dock-mobile" style="padding-bottom:calc(0.5rem + env(safe-area-inset-bottom))">
+  <a href="#home" aria-label="Home" class="nav-link w-11 h-11 rounded-full flex items-center justify-center">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>
+  </a>
+  <a href="#experience" aria-label="Work experience" class="nav-link w-11 h-11 rounded-full flex items-center justify-center">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+  </a>
+  <a href="#skills" aria-label="Skills" class="nav-link w-11 h-11 rounded-full flex items-center justify-center">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"></path></svg>
+  </a>
+  <a href="#education" aria-label="Education" class="nav-link w-11 h-11 rounded-full flex items-center justify-center">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5z"></path><path d="M6 11.5V17c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"></path></svg>
+  </a>
+  <a href="#contact" aria-label="Contact" class="nav-link w-11 h-11 rounded-full flex items-center justify-center">
+    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6.5h17v11a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1v-11z"></path><path d="M4 6.5l8 6.5 8-6.5"></path></svg>
+  </a>
+  <button aria-label="Toggle dark and light mode" class="theme-toggle w-11 h-11 rounded-full flex items-center justify-center glass-btn" style="background:var(--glass-fill-strong)">
+    <svg class="icon-sun w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+    <svg class="icon-moon w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="home" class="relative z-10 min-h-screen flex items-center px-5 sm:px-10 lg:px-24 pt-20 sm:pt-32 pb-16 sm:pb-20">
+  <div class="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
+
+    <div class="reveal">
+      <p class="section-eyebrow font-mono uppercase text-faint mb-5">ERP Trainer  & Support Specialist</p>
+      <h1 class="font-display font-semibold leading-[0.95] text-5xl sm:text-6xl lg:text-6xl mb-6">
+        Saman<br>Adnan Mohammed
+      </h1>
+      <p class="text-lg sm:text-xl text-muted max-w-lg mb-8 leading-relaxed">
+        I keep ERP systems running and the people behind them unstuck — from server implementation to the training that makes accounting, HR, and real-estate teams fluent in SharpERP.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mb-10">
+        <span class="badge-glass px-4 py-2 rounded-full text-sm font-mono">Manager, Support Dept.</span>
+        <span class="badge-glass px-4 py-2 rounded-full text-sm font-mono">ERP Systems</span>
+        <span class="badge-glass px-4 py-2 rounded-full text-sm font-mono">Stimulsoft Reporting</span>
+      </div>
+
+      <!-- Contact liquid icons -->
+      <div class="flex items-center gap-4">
+        <a href="mailto:samanadnanb@gmail.com" aria-label="Send an email to Saman" class="glass-btn glass w-14 h-14 rounded-2xl flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M3.5 6.5h17v11a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1v-11z"></path><path d="M4 6.5l8 6.5 8-6.5"></path></svg>
+        </a>
+        <a href="tel:+9647700287999" aria-label="Call Saman" class="glass-btn glass w-14 h-14 rounded-2xl flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h3l2 5-2.2 1.6a12 12 0 0 0 6.1 6.1L15 13.5l5 2v3a1.5 1.5 0 0 1-1.6 1.5A17 17 0 0 1 3 5.6 1.5 1.5 0 0 1 4.5 3z"></path></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/samanadnan97" target="_blank" rel="noopener noreferrer" aria-label="Open Saman's LinkedIn profile" class="glass-btn glass w-14 h-14 rounded-2xl flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="var(--accent)"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3.5 9.5h3v11h-3v-11zM9.5 9.5h2.9v1.5h.04c.4-.75 1.4-1.55 2.9-1.55 3.1 0 3.66 2 3.66 4.6v6.45h-3v-5.7c0-1.36-.02-3.1-1.89-3.1-1.9 0-2.19 1.48-2.19 3v5.8h-3v-11z"></path></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="reveal flex justify-center lg:justify-end" style="transition-delay:0.15s">
+      <div class="photo-frame w-64 h-64 sm:w-80 sm:h-80">
+        <div class="w-full h-full rounded-[28px] overflow-hidden" style="background:var(--bg-1)">
+          <img src="photo_2026-07-03_01-39-37.jpg" alt="Portrait of Saman Adnan" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============ ABOUT / LANGUAGES STRIP ============ -->
+<section class="relative z-10 px-6 sm:px-10 lg:px-24 py-10">
+  <div class="max-w-6xl mx-auto reveal glass p-8 sm:p-10 grid sm:grid-cols-3 gap-8">
+    <div>
+      <p class="font-mono text-xs text-faint uppercase tracking-widest mb-2">Kurdish (native)</p>
+      <div class="meter-track h-2 rounded-full overflow-hidden"><div class="meter-fill h-full rounded-full" style="width:100%"></div></div>
+    </div>
+    <div>
+      <p class="font-mono text-xs text-faint uppercase tracking-widest mb-2">English</p>
+      <div class="meter-track h-2 rounded-full overflow-hidden"><div class="meter-fill h-full rounded-full" style="width:80%"></div></div>
+    </div>
+    <div>
+      <p class="font-mono text-xs text-faint uppercase tracking-widest mb-2">Arabic</p>
+      <div class="meter-track h-2 rounded-full overflow-hidden"><div class="meter-fill h-full rounded-full" style="width:80%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" class="relative z-10 px-6 sm:px-10 lg:px-24 py-24">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="section-eyebrow font-mono uppercase text-faint mb-3">Career log</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold">Experience</h2>
+    </div>
+
+    <div class="relative pl-8 sm:pl-12">
+      <div class="timeline-line absolute left-[7px] sm:left-[11px] top-2 bottom-0 w-[2px]"></div>
+
+      <!-- Item -->
+      <div class="reveal relative mb-12">
+        <span class="timeline-dot absolute -left-8 sm:-left-12 top-1.5 w-3.5 h-3.5 rounded-full" style="background:var(--accent)"></span>
+        <div class="glass p-6 sm:p-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <h3 class="font-display text-xl sm:text-2xl font-semibold min-w-0 break-words">Manager of Support Department</h3>
+            <span class="font-mono text-xs badge-glass px-3 py-1 rounded-full text-faint shrink-0 whitespace-nowrap">2026 — Present</span>
+          </div>
+          <p class="text-muted text-sm mb-3">Sharpsoft Co. · Sulaimani</p>
+          <p class="text-muted leading-relaxed">Directs the support department — supervising staff, guiding day-to-day priorities, and following up on department work to keep client-facing support consistent.</p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="reveal relative mb-12">
+        <span class="timeline-dot absolute -left-8 sm:-left-12 top-1.5 w-3.5 h-3.5 rounded-full" style="background:var(--accent)"></span>
+        <div class="glass p-6 sm:p-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <h3 class="font-display text-xl sm:text-2xl font-semibold min-w-0 break-words">ERP Trainer System Expert</h3>
+            <span class="font-mono text-xs badge-glass px-3 py-1 rounded-full text-faint shrink-0 whitespace-nowrap">2024 — 2026</span>
+          </div>
+          <p class="text-muted text-sm mb-3">Sharpsoft Co. · Sulaimani</p>
+          <p class="text-muted leading-relaxed">Trained clients on SharpERP with full working knowledge across every module — accounting, human resources, administration, real estate, services, and petroleum.</p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="reveal relative mb-12">
+        <span class="timeline-dot absolute -left-8 sm:-left-12 top-1.5 w-3.5 h-3.5 rounded-full" style="background:var(--accent)"></span>
+        <div class="glass p-6 sm:p-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <h3 class="font-display text-xl sm:text-2xl font-semibold min-w-0 break-words">IT Implementation and Support</h3>
+            <span class="font-mono text-xs badge-glass px-3 py-1 rounded-full text-faint shrink-0 whitespace-nowrap">2024 — 2026</span>
+          </div>
+          <p class="text-muted text-sm mb-3">Sharpsoft Co. · Sulaimani</p>
+          <p class="text-muted leading-relaxed">Implemented and installed ERP systems on client servers, generated reports on the Stimulsoft C#-based framework, and provided ongoing client support.</p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="reveal relative mb-12">
+        <span class="timeline-dot absolute -left-8 sm:-left-12 top-1.5 w-3.5 h-3.5 rounded-full" style="background:var(--accent)"></span>
+        <div class="glass p-6 sm:p-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <h3 class="font-display text-xl sm:text-2xl font-semibold min-w-0 break-words">CCTV Operator</h3>
+            <span class="font-mono text-xs badge-glass px-3 py-1 rounded-full text-faint shrink-0 whitespace-nowrap">2022 — 2024</span>
+          </div>
+          <p class="text-muted text-sm mb-3">Highcrest Hotel · Sulaimani</p>
+          <p class="text-muted leading-relaxed">Installed analog and IP cameras, handled live monitoring and playback, and produced daily reports for the property.</p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="reveal relative mb-12">
+        <span class="timeline-dot absolute -left-8 sm:-left-12 top-1.5 w-3.5 h-3.5 rounded-full" style="background:var(--accent)"></span>
+        <div class="glass p-6 sm:p-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <h3 class="font-display text-xl sm:text-2xl font-semibold min-w-0 break-words">Data Entry</h3>
+            <span class="font-mono text-xs badge-glass px-3 py-1 rounded-full text-faint shrink-0 whitespace-nowrap">Jan — Feb 2022</span>
+          </div>
+          <p class="text-muted text-sm mb-3">Smart Hand · Sulaimani</p>
+          <p class="text-muted leading-relaxed">Handled data entry and system checking.</p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="reveal relative mb-12">
+        <span class="timeline-dot absolute -left-8 sm:-left-12 top-1.5 w-3.5 h-3.5 rounded-full" style="background:var(--accent)"></span>
+        <div class="glass p-6 sm:p-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <h3 class="font-display text-xl sm:text-2xl font-semibold min-w-0 break-words">Freelance</h3>
+            <span class="font-mono text-xs badge-glass px-3 py-1 rounded-full text-faint shrink-0 whitespace-nowrap">2009 — 2022</span>
+          </div>
+          <p class="text-muted leading-relaxed">Design work in Photoshop, hardware and software troubleshooting, iOS and Android mobile repair, and networking setup (routers, MiFi).</p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="reveal relative">
+        <span class="timeline-dot absolute -left-8 sm:-left-12 top-1.5 w-3.5 h-3.5 rounded-full" style="background:var(--accent)"></span>
+        <div class="glass p-6 sm:p-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <h3 class="font-display text-xl sm:text-2xl font-semibold min-w-0 break-words">Hospital Service</h3>
+            <span class="font-mono text-xs badge-glass px-3 py-1 rounded-full text-faint shrink-0 whitespace-nowrap">Jan — Jul 2021</span>
+          </div>
+          <p class="text-muted text-sm mb-3">Xalid Shinky General Hospital · Sulaimani</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="relative z-10 px-6 sm:px-10 lg:px-24 py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="section-eyebrow font-mono uppercase text-faint mb-3">Toolkit</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold">Skills</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6" id="skills-grid">
+      <!-- filled by JS from data below, but written statically for reliability -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION + CERTS ============ -->
+<section id="education" class="relative z-10 px-6 sm:px-10 lg:px-24 py-24">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
+    <div class="reveal">
+      <p class="section-eyebrow font-mono uppercase text-faint mb-3">Foundation</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold mb-8">Education</h2>
+      <div class="glass p-8">
+        <h3 class="font-display text-xl font-semibold mb-2">Bachelor's Degree in Information Technology</h3>
+        <p class="text-muted mb-1">University of Sulaimani</p>
+        <p class="font-mono text-xs text-faint">2020 — 2021</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.1s">
+      <p class="section-eyebrow font-mono uppercase text-faint mb-3">Verified</p>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold mb-8">Training & Certificates</h2>
+      <div class="glass p-8 flex flex-col gap-5">
+        <div class="flex items-start gap-4">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background:var(--glass-fill-strong)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <p class="text-muted leading-relaxed pt-1">TV broadcasting course on KNN Master Control Room (MCR)</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background:var(--glass-fill-strong)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <p class="text-muted leading-relaxed pt-1">Security Camera training and installation (Akam Technology)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="relative z-10 px-6 sm:px-10 lg:px-24 py-24">
+  <div class="max-w-4xl mx-auto reveal glass-strong glass p-10 sm:p-16 text-center">
+    <p class="section-eyebrow font-mono uppercase text-faint mb-3">Get in touch</p>
+    <h2 class="font-display text-4xl sm:text-5xl font-semibold mb-4">Let's work together</h2>
+    <p class="text-muted max-w-lg mx-auto mb-10 leading-relaxed">Based in Mamostyan City, Sulaimaniyah, Iraq. Open to IT support and systems roles — reach out any way that's easiest for you.</p>
+
+    <div class="flex flex-wrap justify-center gap-4 mb-10">
+      <a href="mailto:samanadnanb@gmail.com" class="glass-btn glass px-6 py-4 rounded-2xl flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6.5h17v11a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1v-11z"></path><path d="M4 6.5l8 6.5 8-6.5"></path></svg>
+        <span class="font-mono text-sm">samanadnanb@gmail.com</span>
+      </a>
+      <a href="tel:+9647700287999" class="glass-btn glass px-6 py-4 rounded-2xl flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h3l2 5-2.2 1.6a12 12 0 0 0 6.1 6.1L15 13.5l5 2v3a1.5 1.5 0 0 1-1.6 1.5A17 17 0 0 1 3 5.6 1.5 1.5 0 0 1 4.5 3z"></path></svg>
+        <span class="font-mono text-sm">+964 770 028 7999</span>
+      </a>
+      <a href="https://www.linkedin.com/in/samanadnan97" target="_blank" rel="noopener noreferrer" class="glass-btn glass px-6 py-4 rounded-2xl flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="var(--accent)"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3.5 9.5h3v11h-3v-11zM9.5 9.5h2.9v1.5h.04c.4-.75 1.4-1.55 2.9-1.55 3.1 0 3.66 2 3.66 4.6v6.45h-3v-5.7c0-1.36-.02-3.1-1.89-3.1-1.9 0-2.19 1.48-2.19 3v5.8h-3v-11z"></path></svg>
+        <span class="font-mono text-sm">/in/samanadnan97</span>
+      </a>
+    </div>
+
+    <p class="font-mono text-xs text-faint">Mamostyan City, Sulaimaniyah, Iraq</p>
+  </div>
+</section>
+
+<footer class="relative z-10 text-center py-10">
+  <p class="font-mono text-xs text-faint">Saman Adnan MOhammed © 2026</p>
+</footer>
+
+<script>
+  // ---------- Theme toggle (works for both desktop pill + mobile dock buttons) ----------
+  const root = document.documentElement;
+  const toggles = document.querySelectorAll('.theme-toggle');
+
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    document.querySelectorAll('.icon-sun').forEach(el => el.classList.toggle('hidden', t !== 'light'));
+    document.querySelectorAll('.icon-moon').forEach(el => el.classList.toggle('hidden', t === 'light'));
+  }
+
+  let current = 'dark';
+  applyTheme(current);
+
+  toggles.forEach(btn => {
+    btn.addEventListener('click', () => {
+      current = current === 'dark' ? 'light' : 'dark';
+      applyTheme(current);
+    });
+  });
+
+  // ---------- Nav click -> smooth scroll (explicit, with fixed-nav offset) ----------
+  const NAV_OFFSET = 96;
+  document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      const offset = window.innerWidth < 640 ? 24 : NAV_OFFSET;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // ---------- Scroll reveal ----------
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ---------- Active nav link on scroll (both navs) ----------
+  const sections = ['home','experience','skills','education','contact'].map(id => document.getElementById(id));
+  const allNavLinks = document.querySelectorAll('.nav-link');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        allNavLinks.forEach(l => l.classList.remove('active'));
+        document.querySelectorAll('.nav-link[href="#' + entry.target.id + '"]').forEach(l => l.classList.add('active'));
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-20% 0px -60% 0px' });
+  sections.forEach(s => s && navObserver.observe(s));
+
+  // ---------- Skills data (rendered via JS to keep markup light) ----------
+  const skills = [
+    { name: 'Installation', level: 5 },
+    { name: 'Networking', level: 3 },
+    { name: 'Supporting', level: 5 },
+    { name: 'Windows Server', level: 4 },
+    { name: 'Database (DBMS)', level: 3 },
+    { name: 'Operating Systems', level: 5 },
+    { name: 'Fingerprint Systems', level: 5 },
+    { name: 'Installing Printers', level: 5 },
+    { name: 'Hardware Technical', level: 5 },
+    { name: 'Microsoft Office', level: 5 },
+    { name: 'Data Entry', level: 5 },
+    { name: 'Computer Knowledge', level: 5 },
+    { name: 'Stimulsoft Reporting Framework', level: 5 },
+    { name: 'Web Dev (HTML, CSS)', level: 4 },
+    { name: 'Web Dev (TailwindCSS,DaisyUI)', level: 3 },
+    { name: 'JavaScript', level: 2 },
+    
+  ];
+
+  const grid = document.getElementById('skills-grid');
+  skills.forEach((s, i) => {
+    const pct = (s.level / 5) * 100;
+    const card = document.createElement('div');
+    card.className = 'reveal glass p-6';
+    card.style.transitionDelay = (i % 4) * 0.06 + 's';
+    card.innerHTML = `
+      <div class="flex items-center justify-between mb-3">
+        <span class="font-medium text-sm sm:text-base">${s.name}</span>
+        <span class="font-mono text-xs text-faint">${s.level}/5</span>
+      </div>
+      <div class="meter-track h-2 rounded-full overflow-hidden">
+        <div class="meter-fill h-full rounded-full" style="width:${pct}%"></div>
+      </div>
+    `;
+    grid.appendChild(card);
+    io.observe(card);
+  });
+</script>
+
+</body>
+</html>

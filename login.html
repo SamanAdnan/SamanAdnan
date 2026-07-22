@@ -1,0 +1,171 @@
+@using System.Threading
+<!DOCTYPE html>
+@{
+    var dir = Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft ? "rtl" : "ltr";
+}
+<html direction="@dir" dir="@dir" style="direction: @dir">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="SharpSoft Enterprise Solution">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#2196f3" />
+    <link rel="manifest" href="/manifest.json">
+    <script>
+        var LayoutNameSpace = LayoutNameSpace || {};
+         LayoutNameSpace.isRtl = '@(dir == "rtl" ? "true" : "false")',
+         LayoutNameSpace.dir = '@dir',
+         LayoutNameSpace.required= '@T("This field is required.")',
+         LayoutNameSpace.remote= '@T("Please fix this field.")',
+         LayoutNameSpace.email= '@T("Please enter a valid email address.")',
+         LayoutNameSpace.url= '@T("Please enter a valid URL.")',
+         LayoutNameSpace.date= '@T("Please enter a valid date.")',
+         LayoutNameSpace.dateISO= '@T("Please enter a valid date(ISO).")',
+         LayoutNameSpace.number= '@T("Please enter a valid number.")',
+         LayoutNameSpace.digits= '@T("Please enter only digits.")',
+         LayoutNameSpace.creditcard= '@T("Please enter a valid credit card number.")',
+         LayoutNameSpace.equalTo= '@T("Please enter the same value again.")',
+         LayoutNameSpace.accept= '@T("Please enter a value with a valid extension.")',
+         LayoutNameSpace.maxlength= '@T("Please enter no more than { 0} characters.")',
+         LayoutNameSpace.minlength= '@T("Please enter at least { 0} characters.")',
+         LayoutNameSpace.rangelength= '@T("Please enter a value between { 0} and { 1} characters long.")',
+         LayoutNameSpace.range= '@T("Please enter a value between { 0} and { 1}.")")',
+         LayoutNameSpace.max= '@T("Please enter a value less than or equal to { 0}.")',
+         LayoutNameSpace.min= '@T("Please enter a value greater than or equal to { 0}.")',
+         LayoutNameSpace.today= '@T("Today")',
+         LayoutNameSpace.yesterday= '@T("Yesterday")',
+         LayoutNameSpace.last7days= '@T("Last 7 Days")',
+         LayoutNameSpace.last30days= '@T("Last 30 Days")',
+         LayoutNameSpace.thismonth= '@T("This Month")',
+         LayoutNameSpace.lastmonth = '@T("Last Month")',
+         LayoutNameSpace.SureDeleteMessage = '@T("Are you sure to delete this?")',
+         LayoutNameSpace.WontRevertMessage = '@T("You wont be able to revert this!")',
+         LayoutNameSpace.Yes = '@T("Yes")',
+         LayoutNameSpace.No = '@T("No")',
+         LayoutNameSpace.ErrorOccured = '@T("Error occured")',
+         LayoutNameSpace.Done = '@T("Successfully done")',
+         LayoutNameSpace.Deleted = '@T("Deleted!")',
+         LayoutNameSpace.DeletedMessage = '@T("Your record has been deleted.")',
+         LayoutNameSpace.NoDelete = '@T("Not Deleted!")',
+         LayoutNameSpace.NoDeleteMessage = '@T("Your record has not been deleted.")',
+         LayoutNameSpace.SelectRow ='@T("select a row")'
+         LayoutNameSpace.Addedsuccess ='@T("Successfully added")'
+
+    </script>
+    <title>@T("SharpSoft Enterprise Solution")</title>
+    @Styles.Render("~/Bundles/vendor/" + dir + "/css/top")
+    @RenderSection("styles", false)
+
+    @Scripts.Render("~/Bundles/vendor/js/top")
+</head>
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-aside--minimize dashboard-scroll-auto">
+    <!-- begin:: Header Mobile -->
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+        <div class="kt-header-mobile__logo">
+        </div>
+        <div class="kt-header-mobile__toolbar">
+            <button class="kt-header-mobile__toggler kt-header-mobile__toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
+        </div>
+    </div>
+    <!-- end:: Header Mobile -->
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver">
+            <!-- begin:: Aside -->
+            <button class="kt-aside-close " id="kt_aside_close_btn"><i class="fa fa-close"></i></button>
+            <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+                <!-- begin:: Aside -->
+                <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+                    <div class="kt-aside__brand-logo">
+                        <a href="">
+                            <img src="~/Assets/media/company-logos/menulogo.png" width="150" />
+                        </a>
+                    </div>
+                    <div class="kt-aside__brand-tools">
+                        <button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                        <path d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z" id="Path-94" fill="#000000" fill-rule="nonzero" transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                        <path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z" id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                        <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" id="Path-94" fill="#000000" fill-rule="nonzero" />
+                                        <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <!-- end:: Aside -->
+                <!-- begin:: Aside Menu -->
+                @Html.Action("NavigateBar", "Layout", new { area = "", page = ViewBag.Title })
+                <!-- end:: Aside Menu -->
+            </div>
+            <!-- end:: Aside -->
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+                <!-- begin:: Header -->
+                <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
+                    <ul id="breadcrumbs" class="breadcrumb"></ul>
+                    <!-- begin:: Header Menu -->
+                    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="fa fa-close"></i></button>
+                    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper" style="opacity: 1;">
+                    </div>
+                    <!-- end:: Header Menu -->
+                    <!-- begin:: Header Topbar -->
+                    <div class="kt-header__topbar">
+                        <span id="notificationBadge" class="badge badge-pill badge-danger" style="height: 20px !important; position: relative !important; top: 28px; left: 10px; font-weight: 600 !important;">22</span>
+                        <!--begin: Notifications -->
+                        @Html.Action("NotificationBar", "Layout", new { area = "" })
+                        <!--end: Notifications -->
+                        @Html.Action("LanguageBar", "Layout", new { area = "" })
+                        <!--begin: User Bar -->
+                        @Html.Action("UserBar", "Layout", new { area = "" })
+                        <!--end: User Bar -->
+                    </div>
+                    <!-- end:: Header Topbar -->
+                </div>
+                <!-- end:: Header -->
+                <!-- begin:: Content -->
+                <div id="kt-content" class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+                    @RenderBody()
+                </div>
+                <!-- end:: Content -->
+                <!-- begin:: Footer -->
+                <footer id="kt-footer" class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" style="padding: 10px 25px">
+                    <div class="kt-container  kt-container--fluid " style="width: 100%; display: flex; justify-content: space-between">
+                        <div class="kt-footer__copyright">
+                            @DateTime.Now.Year &nbsp;©&nbsp;<a href="http://SharpSoftCo.com/" target="_blank" class="kt-link">@T("SharpSoft All Rights Reserved.")</a>
+                        </div>
+                        <div class="kt-footer__copyright">
+                            @T("Today") &nbsp;:&nbsp;<a href="#" class="kt-link">@DateTime.Now.ToString("dd/MM/yyyy")</a>
+                        </div>
+                        <div class="kt-footer__menu">
+                            <a href="http://SharpSoftCo.com/About" target="_blank" class="kt-footer__menu-link kt-link">@T("About")</a>
+                            <a href="http://SharpSoftCo.com/Team" target="_blank" class="kt-footer__menu-link kt-link">@T("Team")</a>
+                            <a href="http://SharpSoftCo.com/Contact" target="_blank" class="kt-footer__menu-link kt-link">@T("Contact")</a>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end:: Footer -->
+            </div>
+        </div>
+    </div>
+    <!-- begin::ScrollTop -->
+    <div id="kt_scrolltop" class="kt-scrolltop">
+        <i class="fa fa-arrow-up"></i>
+    </div>
+    <!-- End::ScrollTop -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+
+    @Scripts.Render("~/Bundles/vendor/js/bottom")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
